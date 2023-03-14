@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+
+body{
+    background-color: aliceblue;
+}
+
+.contenedor{
+    width: auto;
+    overflow: hidden;/*oculta los el continido*/
+}
+.slider-contenedor{
+    width: auto;
+    display: flex;
+}
+.contenido-slider{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0; /*capacidad de encoger sea 0*/
+}
+.contenido-slider:nth-child(1){
+    background-color: rgba(255, 0, 0, 0);
+    color: white;
+}
+.contenido-slider:nth-child(2){
+    background-color:rgba(255, 255, 255, 0);
+    color: white;
+}
+
+.contenido-slider:nth-child(3){
+    background-color: rgba(255, 0, 0, 0);
+    color: white;
+}
+.contenido-slider:nth-child(4){
+    background-color: rgba(255, 0, 0, 0);
+    color: white;
+}
+
+.contenido-slider > img{
+    width: 400px;
+}
+
+.contenido-slider > div{
+    width: 40%;
+
+}
+
+.contenido-slider h2{
+    color: black;
+    font-weight: 300;
+    text-align: justify;
+    line-height: 30px;
+}
+
+.contenido-slider a{
+    color: rgb(0, 0, 0);
+    background: rgb(83, 18, 141);
+    width: 100px; 
+    display: block;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 20px;
+    border-radius: 3px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+.contenido-slider:nth-child(2)a{
+    background: white;
+}
+@media screen and (max-width: 900px) {
+    .contenido-slider> img{
+        width: 250 px;
+    }
+    .contenido-slider>div {
+        width: 40%;
+    }
+    .contenido-slider h2{
+        font-size: 23px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .contenido-slider{
+        flex-direction: column-reverse;/* responsivo debajo del otro*/
+    }
+    .contenido-slider>div {
+        width: 80%;
+    }
+}
+
+.title span{
+    --total:calc(var(--duration)
+     + var(--delay));
+    position: relative;
+    display: block;
+    color: transparent;
+    overflow: hidden;
+    animation: revealText 1s
+    var(--total)forwards;
+}
+
+.title span::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10000000000000000px;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: top;
+    background: rgba(233, 229, 229, 0.599);
+    animation: 
+    rollin var(--duration) 
+    var(--delay) forwards, 
+    rollOut var(--duration) 
+    var(--total) forwards
+    ;
+}
+.title span:nth-child(2)::after{
+    border-top: 3px solid #896ab9;
+}
+
+@keyframes revealText{
+    to{
+        color:rgb(255, 255, 255);
+    }
+}
+
+@keyframes rollin{
+    from{
+        transform: scaleX(0);
+    }
+    to{
+        transform: scaleX(1);
+    }
+}
+
+@keyframes  rollOut{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform: translateX(105%);
+    }
+}
+
+

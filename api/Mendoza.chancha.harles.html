@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api php</title>
+</head>
+<body>
+   <div id="cabezera">
+   <h1>Api New</h1>
+    <form id="search-form">
+    <input type="text" id="search-input" placeholder="Buscar noticias...">
+    <button type="submit">Buscar</button>
+   </div>
+</form>
+<div id="containers">
+    <!-- Aquí se mostrarán las noticias -->
+</div>
+
+<div id="container">
+    <script>
+        const container = document.getElementById("container");
+
+fetch("https://newsapi.org/v2/everything?q=keyword&apiKey=38f09da1bf3240b597ca73cd8d431ee7")
+  .then(response => response.json())
+  .then(data => {
+    data.articles.forEach(article => {
+      const link = document.createElement("a");
+      link.href = article.url;
+
+      const noticia = document.createElement("div");
+      noticia.classList.add("noticia", "-" + article.source.name);
+
+      const title = document.createElement("h2");
+      title.textContent = article.title;
+
+      const image = document.createElement("img");
+      image.src = article.urlToImage;
+      image.alt = article.title;
+
+      const description = document.createElement("p");
+      description.textContent = article.description;
+
+      noticia.appendChild(title);
+      noticia.appendChild(image);
+      noticia.appendChild(description);
+
+      link.appendChild(noticia);
+
+      container.appendChild(link);
+    });
+  })
+  .catch(error => console.error(error));
+
+    </script>
+</div>
+</body>
+</html>
+<style>
+    *{
+        font-size: 1rem;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-decoration: none;
+        color: black;
+    }
+    p{
+        text-align: justify
+
+    }
+    img{
+        width: 100%;
+    }
+
+    #noticias-container{
+        margin: 0;
+    }
+    #containers{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        gap: 3rem;
+        width: 90%;
+        margin: 0 auto;
+        place-content: center;
+    }
+    #container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        align-items: center;
+        gap: 3rem;
+        width: 90%;
+        margin: 0 auto;
+        place-content: center;
+    }
+    .noticia{
+        height: 450px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+        overflow-y: hidden;
+
+    }
+
+    .noticia::-webkit-scrollbar{
+        width: 5px;
+    }
+    .noticia::-webkit-scrollbar-thumb{
+        background-color:  gray;
+        border-radius: 1rem;
+    }
+    .noticia::-webkit-scrollbar-track{
+        background-color:  skyblue;
+    }
+
+    .noticia:hover{
+        background-color: skyblue;
+        color: white;
+        transform: scale(1.1);
+        overflow-y: scroll;
+
+    }
+    h2{
+        text-align: center;
+    }
+    h1{
+        text-align: center;
+        font-size: 3rem;
+        color: white;
+        margin: 0;
+    }
+    #cabezera{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        align-items: center;
+        background-color: skyblue;
+        height: 10%;
+        margin: 2rem;
+    }
+
+    #cabezera button{
+        border: none;
+        border-radius: 0.5rem;
+    }
+    #search-input{
+        border: none;
+        outline: none;
+        padding: 0.5rem 1rem ;
+        border-radius: 1rem;
+    }
+</style>
+
+<script>
+    const apiKey = '38f09da1bf3240b597ca73cd8d431ee7';
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const noticiasContainer = document.getElementById('containers');
+
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const searchTerm = searchInput.value;
+    const url = `https://newsapi.org/v2/everything?q=${searchTerm}&apiKey=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            noticiasContainer.innerHTML = '';
+            data.articles.forEach(post => {
+                const noticia = document.createElement('div');
+                noticia.className = `noticia -${post.source.name}`;
+                noticia.innerHTML = `
+                    <a href="${post.url}">
+                        <h2>${post.title}</h2>
+                        <img src="${post.urlToImage}" alt="${post.title}">
+                        <p>${post.description}</p>
+                    </a>
+                `;
+                noticiasContainer.appendChild(noticia);
+            });
+        })
+        .catch(error => console.log(error));
+});
+
+</script>

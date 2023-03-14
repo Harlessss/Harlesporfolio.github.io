@@ -1,0 +1,89 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgba(205, 221, 221, 0.514);
+}
+#contenedor{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contenedor_tareas{
+    margin-top: 4rem;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    place-content: center;
+    background-color: white;
+    border-radius: 0.2rem;
+    box-shadow: 1px 2px 5px 1px  rgba(0, 0, 0, 0.479);
+
+}
+
+
+
+
+.tareas{
+    display: grid;
+    place-content: center;
+    background-color: rgb(49, 45, 45);
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.479);
+    color: white;    
+    grid-template-columns: 50% 20% 30%;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+}
+.tareas button{
+    font-size: 9px;
+    width: 80px;
+}
+#cabecera{
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    border-radius: 0.2rem;
+    box-shadow: 2px 2px 5px 5px  rgba(0, 0, 0, 0.479);
+
+}
+
+h1{
+    margin: 0;
+}
+
+#formulario{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr ;
+    gap: 1rem;
+    align-items: center;
+}
+
+#agregar_tareas{
+    border: 1px 1px ;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    outline: none;
+}
+
+#btn{
+    padding: 0.3rem 1rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.5rem;
+
+}
+
+#btn:hover{
+    background-color: rgb(231, 203, 150);
+   
+}
